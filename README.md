@@ -25,6 +25,7 @@ brew install egovframedev
    ```
 2. Install the desired version of eGovFrame IDE:
    ```bash
+   brew install egovframedev-latest
    brew install egovframedev@4.2.0
    brew install egovframedev@4.1.0
    brew install egovframedev@4.0.0
