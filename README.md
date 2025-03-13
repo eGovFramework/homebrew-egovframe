@@ -24,14 +24,18 @@ brew install egovframedev
    brew tap egovframework/egovframe
    ```
 2. Install the latest version of eGovFrame IDE:
+- Both Apple Silicon ARM64 & Intel/AMD x64 binaries are provided.
    ```bash
    brew install egovframedev-latest
    ```
 3. Install the desired version of eGovFrame IDE:
+- v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
    ```bash
    brew install egovframedev@4.3.0
    brew install egovframedev@4.2.0
    brew install egovframedev@4.1.0
+   brew install egovframedev@4.0.0
+   brew install egovframedev@3.10.0
    ```
 
 Please note that specifying the version is optional. If omitted, the latest version will be installed.
