@@ -32,8 +32,6 @@ brew install egovframedev
    brew install egovframedev@4.3.0
    brew install egovframedev@4.2.0
    brew install egovframedev@4.1.0
-   brew install egovframedev@4.0.0
-   brew install egovframedev@3.10.0
    ```
 
 Please note that specifying the version is optional. If omitted, the latest version will be installed.
