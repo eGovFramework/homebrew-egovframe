@@ -31,6 +31,7 @@ brew install egovframedev
 3. Install the desired version of eGovFrame IDE:
 - v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
    ```bash
+   brew install egovframedev@4.3.1
    brew install egovframedev@4.3.0
    brew install egovframedev@4.2.0
    brew install egovframedev@4.1.0
@@ -42,4 +43,4 @@ Please note that specifying the version is optional. If omitted, the latest vers
 
 ### Application Installation Path
 
-The application is installed under the `/Applications/` directory. The app will be named following the format "eGovFrameDev-X.X.0-Mac.app", where X.X.0 represents the version number.
+The application is installed under the `/Applications/` directory. The app will be named following the format "eGovFrameDev-X.X.X-Mac.app", where X.X.X represents the version number.
