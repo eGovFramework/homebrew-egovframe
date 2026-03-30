@@ -13,34 +13,46 @@ Welcome to eGovFrame's Homebrew Tap, an external repository for Homebrew. This T
 ### For the Latest Version of eGovFrame IDE:
 
 Simply run the following command in your terminal:
+
 ```bash
 brew install egovframedev
 ```
 
 ### For Specific Versions of eGovFrame IDE:
 
-1. Tap into the eGovFrame's repository:
-   ```bash
-   brew tap egovframework/egovframe
-   ```
+1. Tap into the eGovFrame's repository(only for the first time):
+
+```bash
+brew tap egovframework/egovframe
+```
+
 2. Install the latest version of eGovFrame IDE:
-- Both Apple Silicon ARM64 & Intel/AMD x64 binaries are provided.
-   ```bash
-   brew install egovframedev-latest
-   ```
+
+Both Apple Silicon ARM64 & Intel/AMD x64 binaries are provided.
+
+```bash
+brew install egovframedev-latest
+```
+
 3. Install the desired version of eGovFrame IDE:
-- v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
-   ```bash
-   brew install egovframedev@4.3.1
-   brew install egovframedev@4.3.0
-   brew install egovframedev@4.2.0
-   brew install egovframedev@4.1.0
-   brew install egovframedev@4.0.0
-   brew install egovframedev@3.10.0
-   ```
+
+v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
+   
+```bash
+brew install egovframedev@5.0.0
+brew install egovframedev@4.3.1
+brew install egovframedev@4.3.0
+brew install egovframedev@4.2.0
+brew install egovframedev@4.1.0
+brew install egovframedev@4.0.0
+brew install egovframedev@3.10.0
+```
 
 Please note that specifying the version is optional. If omitted, the latest version will be installed.
 
 ### Application Installation Path
 
-The application is installed under the `/Applications/` directory. The app will be named following the format "eGovFrameDev-X.X.X-Mac.app", where X.X.X represents the version number.
+The application is installed under the `/Applications/` directory, and you can verify it with an app name in the following format (X.X.X represents the version number).
+
+* Version 4.3.1 or earlier: `eGovFrameDev-X.X.X-Mac-AArch64.app` or `eGovFrameDev-X.X.X-Mac-x86_64.app`
+* Version 5.0.0 or later: `eGovFrameDev-X.X.X-macOS-AArch64.app` or `eGovFrameDev-X.X.X-macOS-x86_64.app`

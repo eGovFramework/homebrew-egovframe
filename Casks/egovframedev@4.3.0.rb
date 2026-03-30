@@ -1,4 +1,4 @@
-cask "egovframedev-latest" do
+cask "egovframedev@4.3.0" do
   arch arm: "AArch64", intel: "x86_64"
 
   version "4.3.0"
