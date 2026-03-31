@@ -5,7 +5,7 @@ cask "egovframedev@4.3.1" do
   sha256 arm:   "f7a13637be51c750093b98763df20210131c6041a6fcba8237c352eb1f335a5d",
          intel: "f0149077a39664654842b8ee6b2a0084fd0bd17b726d078fe3b1de2eeec64bdb"
 
-  url "https://maven.egovframe.go.kr/publist/HDD1/public/eGovFrameDev-#{version}-Mac-#{arch}.dmg"
+  url "https://maven.egovframe.go.kr/publist/HDD1/public/eGovFrameDev-#{version}-Mac-#{arch}.dmg", user_agent: :fake
   name "eGovFrameDev"
   desc "Open-source framework by South Korea for web-based public service development"
   homepage "https://www.egovframe.go.kr/"
