@@ -12,10 +12,16 @@ Welcome to eGovFrame's Homebrew Tap, an external repository for Homebrew. This T
 
 ### For the Latest Version of eGovFrame IDE:
 
-Simply run the following command in your terminal:
+1. Tap into the eGovFrame's repository(only for the first time):
 
 ```bash
-brew install egovframedev
+brew tap egovframework/egovframe
+```
+
+2. Install the latest version:
+
+```bash
+brew install --cask egovframedev-latest
 ```
 
 ### For Specific Versions of eGovFrame IDE:
@@ -31,7 +37,7 @@ brew tap egovframework/egovframe
 Both Apple Silicon ARM64 & Intel/AMD x64 binaries are provided.
 
 ```bash
-brew install egovframedev-latest
+brew install --cask egovframedev-latest
 ```
 
 3. Install the desired version of eGovFrame IDE:
@@ -39,14 +45,14 @@ brew install egovframedev-latest
 v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
    
 ```bash
-brew install egovframedev@5.0.1
-brew install egovframedev@5.0.0
-brew install egovframedev@4.3.1
-brew install egovframedev@4.3.0
-brew install egovframedev@4.2.0
-brew install egovframedev@4.1.0
-brew install egovframedev@4.0.0
-brew install egovframedev@3.10.0
+brew install --cask egovframedev@5.0.1
+brew install --cask egovframedev@5.0.0
+brew install --cask egovframedev@4.3.1
+brew install --cask egovframedev@4.3.0
+brew install --cask egovframedev@4.2.0
+brew install --cask egovframedev@4.1.0
+brew install --cask egovframedev@4.0.0
+brew install --cask egovframedev@3.10.0
 ```
 
 Please note that specifying the version is optional. If omitted, the latest version will be installed.

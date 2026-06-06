@@ -14,8 +14,16 @@
 
 eGovFrame IDE의 최신 버전을 설치하려면:
 
+1. eGovFrame 저장소를 Homebrew에 추가합니다(최초 1회):
+
 ```bash
-brew install egovframedev
+brew tap egovframework/egovframe
+```
+
+2. 최신 버전을 설치합니다:
+
+```bash
+brew install --cask egovframedev-latest
 ```
 
 특정 버전의 eGovFrame IDE를 설치하려면 다음 단계를 따르세요:
@@ -31,21 +39,21 @@ brew tap egovframework/egovframe
 Apple Silicon ARM64 및 Intel/AMD x64 바이너리가 모두 제공됩니다.
 
 ```bash
-brew install egovframedev-latest
+brew install --cask egovframedev-latest
 ```
 
 1. 원하는 버전의 eGovFrame IDE를 설치합니다:
   4.0 및 v3.10은 Intel/AMD x64 바이너리만 제공됩니다.
 
 ```bash
-brew install egovframedev@5.0.1
-brew install egovframedev@5.0.0
-brew install egovframedev@4.3.1
-brew install egovframedev@4.3.0
-brew install egovframedev@4.2.0
-brew install egovframedev@4.1.0
-brew install egovframedev@4.0.0
-brew install egovframedev@3.10.0
+brew install --cask egovframedev@5.0.1
+brew install --cask egovframedev@5.0.0
+brew install --cask egovframedev@4.3.1
+brew install --cask egovframedev@4.3.0
+brew install --cask egovframedev@4.2.0
+brew install --cask egovframedev@4.1.0
+brew install --cask egovframedev@4.0.0
+brew install --cask egovframedev@3.10.0
 ```
 
 버전을 지정하는 것은 선택사항입니다. 생략하면 최신 버전이 설치됩니다.
