@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, work]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scripts:
+    name: Update script tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install PyYAML (same pin as scripts/sync_readme.py)
+        run: python3 -m pip install "PyYAML==6.0.3"
+      - run: python3 -m unittest discover -s tests -v
+
+  tap-syntax:
+    name: Tap syntax (brew readall, style, audit)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: Homebrew/actions/setup-homebrew@d482da0e602890d3160aade42e72c8556103bf04 # main
+      - name: Every cask passes readall, style and audit
+        run: bash scripts/check_tap.sh

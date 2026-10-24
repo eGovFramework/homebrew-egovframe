@@ -1,0 +1,5 @@
+# Casks that `brew style` is not run on, one cask name per line.
+# egovframedev@4.2.1: legacy `postflight` block. Homebrew's Cask/InstallSteps cop wants the new
+# declarative `postflight_steps`, which older Homebrew versions cannot parse, and RuboCop
+# disable directives are forbidden in casks. Convert it only together with a real install test.
+egovframedev@4.2.1

@@ -1,0 +1,32 @@
+name: Cask install problem / cask 설치 문제
+description: brew install or upgrade of an eGovFrame cask fails or misbehaves
+labels: [bug]
+body:
+  - type: input
+    id: cask
+    attributes:
+      label: Cask
+      placeholder: egovframedev@5.0.2
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version and architecture
+      placeholder: macOS 15.1, Apple Silicon
+    validations:
+      required: true
+  - type: input
+    id: brew
+    attributes:
+      label: "`brew --version`"
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Command and output / 실행한 명령과 출력
+      description: For a hash mismatch, include the expected and actual SHA-256.
+      render: shell
+    validations:
+      required: true

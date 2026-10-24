@@ -8,6 +8,8 @@ cask "egovframedev@4.0.0" do
   desc "Open-source framework by South Korea for web-based public service development"
   homepage "https://www.egovframe.go.kr/"
 
+  depends_on :macos
+
   app "eGovFrameDev-#{version}-Mac-64bit.app"
 
   zap trash: [

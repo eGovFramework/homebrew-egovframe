@@ -1,0 +1,70 @@
+# eGovFrame Homebrew Tap Documentation Configuration
+# Language of the generated root and .github/ documentation entrypoints.
+# Supported: en, ko, es, vi, ar, fr
+default_language: en
+
+# Localized README sources. The root README.md is generated from default_language
+# by scripts/sync_readme.py; never edit it by hand.
+languages:
+  en: docs/README.en.md
+  ko: docs/README.ko.md
+  es: docs/README.es.md
+  vi: docs/README.vi.md
+  ar: docs/README.ar.md
+  fr: docs/README.fr.md
+
+# Localized code-signing guide sources. The root code-signing-guideline.md is generated
+# from default_language by scripts/sync_readme.py; never edit it by hand.
+code_signing_guideline:
+  en: docs/code-signing-guideline/code-signing-guideline.en.md
+  ko: docs/code-signing-guideline/code-signing-guideline.ko.md
+  es: docs/code-signing-guideline/code-signing-guideline.es.md
+  vi: docs/code-signing-guideline/code-signing-guideline.vi.md
+  ar: docs/code-signing-guideline/code-signing-guideline.ar.md
+  fr: docs/code-signing-guideline/code-signing-guideline.fr.md
+
+# GitHub-discoverable community entrypoints are generated into .github/.
+contributing:
+  en: docs/contributing/CONTRIBUTING.en.md
+  ko: docs/contributing/CONTRIBUTING.ko.md
+  es: docs/contributing/CONTRIBUTING.es.md
+  vi: docs/contributing/CONTRIBUTING.vi.md
+  ar: docs/contributing/CONTRIBUTING.ar.md
+  fr: docs/contributing/CONTRIBUTING.fr.md
+
+security:
+  en: docs/security/SECURITY.en.md
+  ko: docs/security/SECURITY.ko.md
+  es: docs/security/SECURITY.es.md
+  vi: docs/security/SECURITY.vi.md
+  ar: docs/security/SECURITY.ar.md
+  fr: docs/security/SECURITY.fr.md
+
+# Language selector badge configuration
+# Each language has a flat badge (current) and outline badge (others).
+# target: the explicit localized README source (English included, never the root README.md).
+language_badges:
+  en:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/en/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/en/outline.svg"
+    target: "docs/README.en.md"
+  ko:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ko/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ko/outline.svg"
+    target: "docs/README.ko.md"
+  es:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/es/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/es/outline.svg"
+    target: "docs/README.es.md"
+  vi:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/vi/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/vi/outline.svg"
+    target: "docs/README.vi.md"
+  ar:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ar/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ar/outline.svg"
+    target: "docs/README.ar.md"
+  fr:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/fr/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/fr/outline.svg"
+    target: "docs/README.fr.md"

@@ -1,0 +1,54 @@
+name: Sync default-language documentation
+
+# Keep root and GitHub-discoverable community entrypoints in sync with docs/config.yml.
+# Runs on source/config/generator changes on main (upstream) or work (fork), or manually.
+
+on:
+  push:
+    branches: [main, work]
+    paths:
+      - docs/config.yml
+      - docs/README.*.md
+      - docs/code-signing-guideline/code-signing-guideline.*.md
+      - docs/contributing/CONTRIBUTING.*.md
+      - docs/security/SECURITY.*.md
+      - scripts/sync_readme.py
+      - .github/workflows/sync-readme.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-readme-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync-readme:
+    if: github.ref_name == 'main' || github.ref_name == 'work'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML (same pin as scripts/sync_readme.py)
+        run: python3 -m pip install "PyYAML==6.0.3"
+
+      - name: Generate default-language entrypoints
+        id: sync
+        run: python3 scripts/sync_readme.py
+
+      - name: Commit and push if changed
+        if: steps.sync.outputs.changed == 'true'
+        env:
+          FILES: ${{ steps.sync.outputs.files }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md code-signing-guideline.md .github/CONTRIBUTING.md .github/SECURITY.md
+          git commit -m "docs: sync default-language entrypoints (${FILES})"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
