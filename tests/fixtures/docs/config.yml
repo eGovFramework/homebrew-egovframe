@@ -1,0 +1,53 @@
+# eGovFrame Homebrew Tap Documentation Configuration
+# Language of the generated root entries (README.md, code-signing-guideline.md).
+# Supported: en, ko, es, vi, ar, fr
+default_language: en
+
+# Localized README sources. The root README.md is generated from default_language
+# by scripts/sync_readme.py; never edit it by hand.
+languages:
+  en: docs/README.en.md
+  ko: docs/README.ko.md
+  es: docs/README.es.md
+  vi: docs/README.vi.md
+  ar: docs/README.ar.md
+  fr: docs/README.fr.md
+
+# Localized code-signing guide sources. The root code-signing-guideline.md is generated
+# from default_language by scripts/sync_readme.py; never edit it by hand.
+code_signing_guideline:
+  en: docs/code-signing-guideline/code-signing-guideline.en.md
+  ko: docs/code-signing-guideline/code-signing-guideline.ko.md
+  es: docs/code-signing-guideline/code-signing-guideline.es.md
+  vi: docs/code-signing-guideline/code-signing-guideline.vi.md
+  ar: docs/code-signing-guideline/code-signing-guideline.ar.md
+  fr: docs/code-signing-guideline/code-signing-guideline.fr.md
+
+# Language selector badge configuration
+# Each language has a flat badge (current) and outline badge (others).
+# target: the explicit localized README source (English included, never the root README.md).
+language_badges:
+  en:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/en/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/en/outline.svg"
+    target: "docs/README.en.md"
+  ko:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ko/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ko/outline.svg"
+    target: "docs/README.ko.md"
+  es:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/es/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/es/outline.svg"
+    target: "docs/README.es.md"
+  vi:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/vi/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/vi/outline.svg"
+    target: "docs/README.vi.md"
+  ar:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ar/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ar/outline.svg"
+    target: "docs/README.ar.md"
+  fr:
+    badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/fr/flat.svg"
+    outline_badge: "https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/fr/outline.svg"
+    target: "docs/README.fr.md"

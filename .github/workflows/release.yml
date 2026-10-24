@@ -1,0 +1,49 @@
+name: Release
+
+# Publish the final maintained patch of each available 3.x/4.x/5.x minor series.
+# Obsolete Release records are pruned; Git tags and commits are never deleted.
+on:
+  push:
+    branches: [main, work]
+    paths:
+      - Casks/*.rb
+      - scripts/publish_releases.py
+      - scripts/release_notes.py
+      - .github/workflows/release.yml
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "One final maintained version to publish (default: reconcile all eligible casks)"
+        type: string
+        default: ""
+      ref:
+        description: "Commit containing the cask; obsolete versions remain blocked by the current work inventory"
+        type: string
+        default: ""
+      dry_run:
+        description: "Show the publication/pruning plan without changing Releases or tags"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Reconcile final maintained Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          REQUESTED: ${{ inputs.version }}
+          REF: ${{ inputs.ref }}
+        run: python3 scripts/publish_releases.py --version "$REQUESTED" --ref "$REF" ${{ inputs.dry_run && '--dry-run' || '' }}

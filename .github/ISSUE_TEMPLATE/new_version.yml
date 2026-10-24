@@ -1,0 +1,23 @@
+name: New IDE version / 새 IDE 버전
+description: A new eGovFrame IDE version is published but the tap has no cask for it yet
+labels: [new-version]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 5.0.3
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Where it is published / 공개된 위치
+      description: Release page or download URL on egovframe.go.kr
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        The `Update casks` workflow checks https://www.egovframe.go.kr/home/sub.do?menuNo=40 daily and opens a pull request
+        once the macOS DMGs for both architectures exist. If it did not, mention what the page and the download URL show.
