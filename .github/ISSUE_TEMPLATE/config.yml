@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability / 보안 취약점 신고
+    url: https://github.com/eGovFramework/homebrew-egovframe/security/advisories/new
+    about: Private report. Please do not open a public issue for security problems.
+  - name: Problem with the eGovFrame IDE itself / IDE 자체 문제
+    url: https://www.egovframe.go.kr/
+    about: The IDE and its download server are maintained by the eGovFrame project.

@@ -1,43 +1,49 @@
 # homebrew-egovframe
 
-## Introduction
-Welcome to eGovFrame's Homebrew Tap, an external repository for Homebrew. This Tap is dedicated to hosting Casks for eGovFrame's Integrated Development Environment (IDE).
+<!-- latest-badge:start -->
+[![eGovFrame](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/unversioned/flat.svg)](https://www.egovframe.go.kr/)
+[![CI](https://github.com/leejongyoung/homebrew-egovframe/actions/workflows/ci.yml/badge.svg)](https://github.com/leejongyoung/homebrew-egovframe/actions/workflows/ci.yml)
+[![Update casks](https://github.com/leejongyoung/homebrew-egovframe/actions/workflows/update-casks.yml/badge.svg)](https://github.com/leejongyoung/homebrew-egovframe/actions/workflows/update-casks.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+<!-- latest-badge:end -->
 
-## About eGovFrame
-- Name: eGovFrame
-- Description: eGovFrame is an open-source framework provided by the government of South Korea. It is designed for the development of web-based public services. As a government-standardized development platform, eGovFrame plays a crucial role in IT projects within the public sector in Korea. Its global availability allows it to be utilized by users worldwide.
-- Homepage: [eGovFrame Official Website](https://www.egovframe.go.kr/)
+[![English](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/en/flat.svg)](docs/README.en.md)
+[![한국어](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ko/outline.svg)](docs/README.ko.md)
+[![Español](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/es/outline.svg)](docs/README.es.md)
+[![Tiếng Việt](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/vi/outline.svg)](docs/README.vi.md)
+[![العربية](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/ar/outline.svg)](docs/README.ar.md)
+[![Français](https://raw.githubusercontent.com/leejongyoung/egovframe-badge/main/badges/lang/fr/outline.svg)](docs/README.fr.md)
 
-## Installation Guide
+## About
 
-### For the Latest Version of eGovFrame IDE:
+Homebrew casks for the macOS eGovFrame development environment (IDE). Downloads come from the official eGovFrame server.
 
-Simply run the following command in your terminal:
+- [eGovFrame website](https://www.egovframe.go.kr/)
+- [Development environment downloads](https://www.egovframe.go.kr/home/sub.do?menuNo=40)
+- [Code signing guide](docs/code-signing-guideline/code-signing-guideline.en.md)
 
-```bash
-brew install egovframedev
-```
+## Installation
 
-### For Specific Versions of eGovFrame IDE:
+### Add the official tap
 
-1. Tap into the eGovFrame's repository(only for the first time):
+Install [Homebrew](https://brew.sh/) first, then add this tap once:
 
 ```bash
 brew tap egovframework/egovframe
 ```
 
-2. Install the latest version of eGovFrame IDE:
-
-Both Apple Silicon ARM64 & Intel/AMD x64 binaries are provided.
+### Install the latest release
 
 ```bash
-brew install egovframedev-latest
+brew install --cask egovframework/egovframe/egovframedev-latest
 ```
 
-3. Install the desired version of eGovFrame IDE:
+The latest cask in this tap is named `egovframedev-latest`. Use that name explicitly rather than treating a versioned cask as having an optional version suffix.
 
-v4.0 & v3.10 are provided as Intel/AMD x64 binaries only.
-   
+### Install a specific version
+
+Choose one of the available casks:
+
 ```bash
 brew install egovframedev@5.0.2
 brew install egovframedev@4.3.1
@@ -47,11 +53,24 @@ brew install egovframedev@4.0.0
 brew install egovframedev@3.10.0
 ```
 
-Please note that specifying the version is optional. If omitted, the latest version will be installed.
+These commands assume the official tap above. If another tap provides the same cask name, use the fully qualified form `egovframework/egovframe/egovframedev@<version>` with your chosen version.
 
-### Application Installation Path
+### Update the latest cask
 
-The application is installed under the `/Applications/` directory, and you can verify it with an app name in the following format (X.X.X represents the version number).
+```bash
+brew update
+brew upgrade --cask egovframework/egovframe/egovframedev-latest
+```
 
-* Version 4.3.1 or earlier: `eGovFrameDev-X.X.X-Mac-AArch64.app` or `eGovFrameDev-X.X.X-Mac-x86_64.app`
-* Version 5.0.0 or later: `eGovFrameDev-X.X.X-macOS-AArch64.app` or `eGovFrameDev-X.X.X-macOS-x86_64.app`
+## Architectures and application paths
+
+- The listed casks other than 3.10.0 and 4.0.0 provide Apple Silicon (ARM64) and Intel (x86_64) downloads; Homebrew selects the matching architecture.
+- Versions 3.10.0 and 4.0.0 provide Intel (x86_64) downloads only, not native Apple Silicon builds.
+- Applications are installed under `/Applications/`:
+  - 3.10.0 and 4.0.0: `eGovFrameDev-X.X.X-Mac-64bit.app`
+  - Dual-architecture casks using the older `Mac` naming: `eGovFrameDev-X.X.X-Mac-AArch64.app` or `eGovFrameDev-X.X.X-Mac-x86_64.app`
+  - Dual-architecture casks using the newer `macOS` naming: `eGovFrameDev-X.X.X-macOS-AArch64.app` or `eGovFrameDev-X.X.X-macOS-x86_64.app`
+
+## License
+
+See [LICENSE](LICENSE). eGovFrame names and logos belong to their respective owners.

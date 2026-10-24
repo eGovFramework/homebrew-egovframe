@@ -1,0 +1,110 @@
+name: Update casks
+
+# Detects new eGovFrame IDE releases on egovframe.go.kr and opens a pull request into the default branch.
+# Nothing is merged automatically. A PR opened with GITHUB_TOKEN does not trigger ci.yml,
+# so this job runs the script tests plus readall/style/audit before opening the PR.
+
+on:
+  schedule:
+    - cron: "17 21 * * *" # 06:17 KST, daily
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only detect new releases; download nothing, open no PR"
+        type: boolean
+        default: false
+      verify:
+        description: "Instead of updating: download this existing version's DMGs and compare with the cask's SHA-256 (e.g. 5.0.2)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-casks
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # Keep before the update step: when it ran after, the update's file changes were gone from the working tree
+      # (observed: `git commit` found nothing to commit).
+      - uses: Homebrew/actions/setup-homebrew@d482da0e602890d3160aade42e72c8556103bf04 # main
+
+      # After setup-homebrew so this interpreter, not Homebrew's, answers `python3`.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML (same pin as scripts/sync_readme.py)
+        run: python3 -m pip install "PyYAML==6.0.3"
+
+      - name: Verify an existing cask against the official DMGs
+        if: ${{ inputs.verify != '' }}
+        env:
+          VERIFY: ${{ inputs.verify }}
+        run: python3 scripts/update_casks.py --verify "$VERIFY"
+
+      - name: Detect and add new releases
+        id: update
+        if: ${{ inputs.verify == '' }}
+        run: python3 scripts/update_casks.py ${{ inputs.dry_run && '--dry-run' || '' }}
+
+      - name: Full validation before opening the version PR
+        if: ${{ steps.update.outputs.changed == 'true' }}
+        run: |
+          python3 -m unittest discover -s tests -v
+          bash scripts/check_tap.sh
+
+      - name: Open pull request
+        if: ${{ steps.update.outputs.changed == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ADDED: ${{ steps.update.outputs.added }}
+          REMOVED: ${{ steps.update.outputs.removed }}
+        run: |
+          set -euo pipefail
+          versions=${ADDED//,/ }
+          branch="auto/egovframedev-${ADDED//,/-}"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+            echo "::notice::$branch already exists on origin (open or closed PR) — not opening another"
+            exit 0
+          fi
+          # The credentials checkout persisted are gone after setup-homebrew; let gh answer git's auth prompt.
+          gh auth setup-git
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          base_branch=$(git rev-parse --abbrev-ref HEAD)
+          git checkout -b "$branch"
+          git status --short
+          git add -A Casks README.md code-signing-guideline.md docs
+          title="feat(casks): add egovframedev@${ADDED//,/, egovframedev@}"
+          git commit -m "$title"
+          git push origin "$branch"
+          {
+            echo "Detected on https://www.egovframe.go.kr/home/sub.do?menuNo=40 and downloaded from the official host."
+            echo
+            for v in $versions; do
+              echo "### $v"
+              sed -n '/sha256/,/intel:/p' "Casks/egovframedev@$v.rb" | sed 's/^ *//; s/^sha256 //; s/^/    /'
+              echo
+            done
+            if [ -n "$REMOVED" ]; then echo "Removed older patch casks of the same series: ${REMOVED//,/, }"; fi
+            echo
+            echo "Merging this publishes the GitHub Release for the new version (release.yml)."
+            echo
+            echo "Check before merging: \`gh workflow run update-casks.yml -f verify=<version>\` re-downloads the DMGs and compares the hashes."
+          } > body.md
+          if pr_url=$(gh pr create --base "$base_branch" --head "$branch" --title "$title" --body-file body.md 2>&1); then
+            echo "$pr_url" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            compare_url="https://github.com/$GITHUB_REPOSITORY/compare/$base_branch...$branch?expand=1"
+            echo "::warning::Branch $branch was pushed, but automatic PR creation failed ($pr_url). Enable 'Allow GitHub Actions to create and approve pull requests' in Settings -> Actions -> General, or open the PR manually: $compare_url"
+            printf '### Branch pushed: %s\nOpen PR manually: %s\n' "$branch" "$compare_url" >> "$GITHUB_STEP_SUMMARY"
+          fi
